@@ -56,6 +56,18 @@ services:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - courseforum
+      
+  adminer:
+    image: adminer:latest
+    container_name: courseforum-adminer
+    restart: unless-stopped
+    ports:
+      - "8081:8080"
+    depends_on:
+      - mysql
+      - postgres
+    networks:
+      - courseforum
 volumes:
   postgres_data:
   
