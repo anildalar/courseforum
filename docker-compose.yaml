@@ -1,0 +1,64 @@
+services:
+
+  nginx:
+    image: nginx:alpine
+    container_name: courseforum-nginx
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - ./xenforo:/var/www/html:ro
+      - ./config/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - php
+    networks:
+      - courseforum
+
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile.xenforo
+    container_name: courseforum-php
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - ./xenforo:/var/www/html
+    depends_on:
+      - mysql
+    networks:
+      - courseforum
+
+  mysql:
+    image: mariadb:11
+    container_name: courseforum-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      TZ: Asia/Kolkata
+    volumes:
+      - ./database/mysql:/var/lib/mysql
+    networks:
+      - courseforum
+
+  postgres:
+    image: postgres:17
+    container_name: courseforum-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      TZ: Asia/Kolkata
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - courseforum
+volumes:
+  postgres_data:
+  
+networks:
+  courseforum:
+    driver: bridge
