@@ -23,6 +23,9 @@ services:
     working_dir: /var/www/html
     volumes:
       - ./xenforo:/var/www/html
+      - ./config/php.ini:/usr/local/etc/php/conf.d/99-courseforum.ini:ro
+      - ./config/snuffleupagus.ini:/usr/local/etc/php/conf.d/98-snuffleupagus.ini:ro
+      - ./config/snuffleupagus.rules:/usr/local/etc/php/conf.d/snuffleupagus.rules:ro
     depends_on:
       - mysql
     networks:

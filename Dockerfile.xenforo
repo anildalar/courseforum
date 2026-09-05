@@ -5,6 +5,15 @@ RUN apt-get update \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libpng-dev \
+        libmagickwand-dev \
+        libgmp-dev \
+        libicu-dev \
+        libzip-dev \
+        unzip \
+        pkg-config \
+        git \
+        autoconf \
+        build-essential \
     && docker-php-ext-configure gd \
         --with-freetype \
         --with-jpeg \
@@ -13,6 +22,19 @@ RUN apt-get update \
         pdo_mysql \
         gd \
         exif \
+        gmp \
+        intl \
+        zip \
+    && pecl install imagick \
+    && docker-php-ext-enable imagick \
+    && git clone --depth 1 https://github.com/jvoisin/snuffleupagus.git /tmp/snuffleupagus \
+    && cd /tmp/snuffleupagus/src \
+    && phpize \
+    && ./configure \
+    && make -j"$(nproc)" \
+    && make install \
+    && docker-php-ext-enable snuffleupagus \
+    && rm -rf /tmp/snuffleupagus \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 

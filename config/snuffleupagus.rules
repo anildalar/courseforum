@@ -1,0 +1,10 @@
+; ============================================================
+; Snuffleupagus rules for XenForo
+; ============================================================
+
+; Keep the rules file intentionally minimal initially.
+; XenForo and third-party add-ons may rely on dynamic PHP
+; behavior, so aggressive restrictions should be added only
+; after testing compatibility.
+
+; No additional restrictions enabled yet.

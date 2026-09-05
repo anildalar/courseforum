@@ -1,0 +1,17 @@
+{
+    "missing": {
+        "XF": [
+            "install/index.php",
+            "install/install.css",
+            "install/oc-upgrader.php"
+        ]
+    },
+    "inconsistent": {
+        "XF": [
+            "src/XF.php"
+        ]
+    },
+    "total_missing": 3,
+    "total_inconsistent": 1,
+    "total_checked": 13825
+}
