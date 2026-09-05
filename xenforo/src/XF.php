@@ -43,10 +43,10 @@ class XF
 	 * @var string
 	 * @var int
 	 */
-	public static $version = '2.3.11';
-	public static $versionId = 2031170; // abbccde = a.b.c d (alpha: 1, beta: 3, RC: 5, stable: 7, PL: 9) e
+	public static $version = '2.3.12';
+	public static $versionId = 2031270; // abbccde = a.b.c d (alpha: 1, beta: 3, RC: 5, stable: 7, PL: 9) e
 
-	public const XF_API_URL = 'https://xenforo.com/api/';
+	public const XF_API_URL = '';
 	public const XF_LICENSE_KEY = '';
 
 	public const API_VERSION = 1;
@@ -434,7 +434,7 @@ class XF
 		unset(static::$classAliasLock[$alias]);
 	}
 
-	public static function getAliasForClass(string $class): string
+	public static function getAliasForClass(string $class, bool $useFileExistence = true): string
 	{
 		if (strpos($class, '\\') === false)
 		{
@@ -470,7 +470,10 @@ class XF
 			// require $class to exist: the autoloader calls this mid-declaration
 			// (a class type-hinting its own stripped alias), before it's visible.
 			$alias = substr($class, 0, -strlen($suffix));
-			if (self::classLikeExists($alias))
+			$exists = ($useFileExistence && self::$autoLoader)
+				? (bool) self::$autoLoader->findFile($alias)
+				: self::classLikeExists($alias);
+			if ($exists)
 			{
 				return $class;
 			}
@@ -493,7 +496,7 @@ class XF
 			|| trait_exists($class, false);
 	}
 
-	public static function getClassForAlias(string $alias): string
+	public static function getClassForAlias(string $alias, bool $useFileExistence = true): string
 	{
 		if (strpos($alias, '\\') === false)
 		{
@@ -526,7 +529,10 @@ class XF
 			}
 
 			$class = $alias . $suffix;
-			if (self::classLikeExists($class))
+			$exists = ($useFileExistence && self::$autoLoader)
+				? (bool) self::$autoLoader->findFile($class)
+				: self::classLikeExists($class);
+			if ($exists)
 			{
 				return $class;
 			}
@@ -1541,12 +1547,12 @@ class XF
 
 	public static function getCopyrightHtml()
 	{
-		return '<a href="https://xnforo.ir" class="u-concealed" dir="ltr" target="_blank" rel="nofollow noopener">xnforo.ir</span></a>';
+		return '<a href="https://xenforo.com" class="u-concealed" dir="ltr" target="_blank" rel="sponsored noopener">Community platform by XenForo<sup>&reg;</sup> <span class="copyright">&copy; 2010-2026 XenForo Ltd.</span></a>';
 	}
 
 	public static function getCopyrightHtmlAcp()
 	{
-		return '<a href="https://xnforo.ir" class="u-concealed" dir="ltr" target="_blank" rel="nofollow noopener">xnforo.ir</span></a>';
+		return '<a href="https://xenforo.com" class="u-concealed" dir="ltr" target="_blank" rel="sponsored noopener" data-xf-init="tooltip" title="&copy; 2010-2026 XenForo Ltd.">Community platform by XenForo<sup>&reg;</sup></a>';
 	}
 
 	public static function isPreEscaped($value, $type = 'html')

@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'xenforo-ltd/xenforo',
-        'pretty_version' => '2311',
-        'version' => '2311.0.0.0',
-        'reference' => '9cdb012b3158f82e7fad8d0f07af8cb573d3732e',
+        'pretty_version' => '2312',
+        'version' => '2312.0.0.0',
+        'reference' => '6e11c1f963ea5e07186ff476e7737045f86712ab',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../../',
         'aliases' => array(),
@@ -610,9 +610,9 @@
             'dev_requirement' => false,
         ),
         'symfony/polyfill-intl-idn' => array(
-            'pretty_version' => 'v1.37.0',
-            'version' => '1.37.0.0',
-            'reference' => '9614ac4d8061dc257ecc64cba1b140873dce8ad3',
+            'pretty_version' => 'v1.38.1',
+            'version' => '1.38.1.0',
+            'reference' => 'dc21118016c039a66235cf93d96b435ffb282412',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/polyfill-intl-idn',
             'aliases' => array(),
@@ -772,9 +772,9 @@
             'dev_requirement' => false,
         ),
         'xenforo-ltd/xenforo' => array(
-            'pretty_version' => '2311',
-            'version' => '2311.0.0.0',
-            'reference' => '9cdb012b3158f82e7fad8d0f07af8cb573d3732e',
+            'pretty_version' => '2312',
+            'version' => '2312.0.0.0',
+            'reference' => '6e11c1f963ea5e07186ff476e7737045f86712ab',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../../',
             'aliases' => array(),

@@ -202,7 +202,7 @@ class App implements \ArrayAccess
 				'sslVerify' => null,
 				'proxy' => null,
 			],
-			'globalSalt' => '33c440b15d0482a3267334defa09ac30',
+			'globalSalt' => 'ec556025a419b38dc765617f2414bf48',
 			'superAdmins' => '', // keep this for upgrade purposes
 			'internalDataPath' => 'internal_data',
 			'codeCachePath' => '%s/code_cache',
