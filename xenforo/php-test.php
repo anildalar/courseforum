@@ -1,0 +1,12 @@
+<?php
+header('Content-Type: text/plain');
+
+echo "SAPI: " . PHP_SAPI . PHP_EOL;
+echo "memory_limit: " . ini_get('memory_limit') . PHP_EOL;
+echo "post_max_size: " . ini_get('post_max_size') . PHP_EOL;
+echo "upload_max_filesize: " . ini_get('upload_max_filesize') . PHP_EOL;
+echo "max_execution_time: " . ini_get('max_execution_time') . PHP_EOL;
+echo "max_input_time: " . ini_get('max_input_time') . PHP_EOL;
+echo "max_input_vars: " . ini_get('max_input_vars') . PHP_EOL;
+echo "Loaded php.ini: " . (php_ini_loaded_file() ?: '(none)') . PHP_EOL;
+echo "Scanned INIs: " . (php_ini_scanned_files() ?: '(none)') . PHP_EOL;
