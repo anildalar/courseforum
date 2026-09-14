@@ -61,7 +61,9 @@ services:
       - courseforum
       
   adminer:
-    image: adminer:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.adminer
     container_name: courseforum-adminer
     restart: unless-stopped
     ports:

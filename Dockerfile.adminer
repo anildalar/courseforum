@@ -1,0 +1,14 @@
+FROM php:8.4-cli-alpine
+
+WORKDIR /var/www/html
+
+RUN apk add --no-cache \
+        curl \
+        ca-certificates \
+    && curl -fL \
+        https://www.adminer.org/latest.php \
+        -o /var/www/html/index.php
+
+EXPOSE 8080
+
+CMD ["php", "-S", "0.0.0.0:8080", "-t", "/var/www/html"]
